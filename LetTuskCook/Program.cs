@@ -9,7 +9,7 @@ namespace LetTuskCook
             List<Task> cuochi = new List<Task>();
             CPianoCottura pianoCottura = new CPianoCottura();
 
-            for (int i = 0; i < 20; i++) 
+            for (int i = 0; i < 200; i++) 
             {
                 CCuoco cuoco = new CCuoco(pianoCottura);
                 cuochi.Add(cuoco.Cucina());

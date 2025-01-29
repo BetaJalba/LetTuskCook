@@ -8,24 +8,26 @@ namespace LetTuskCook
 {
     public class CCuoco
     {
-        public int TempoCottura;
+        static int count = 0;
+        public int id = count++;
         CPianoCottura pianoCottura;
 
         public CCuoco(CPianoCottura pianoCottura) 
         {
-            Random rand = new Random();
-            TempoCottura = rand.Next(1000, 3000);
             this.pianoCottura = pianoCottura;
         }
 
         public async Task Cucina() 
         {
             await pianoCottura.RichiediPiano(this);
-            Console.WriteLine("Piano occupato!");
-            await pianoCottura.PreparaPiatto(this);
-            Console.WriteLine("Cucinato!");
-            await pianoCottura.RilasciaPiano(this);
-            Console.WriteLine("Piano rilasciato!");
+            try
+            {
+                await pianoCottura.PreparaPiatto(this);
+            }
+            finally
+            {
+                await pianoCottura.RilasciaPiano(this);
+            }
         }
     }
 }
